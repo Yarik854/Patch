@@ -110,8 +110,9 @@ async def patch_post_page(
     )
 
 
-@router.post("/{post_id}/patch")
+@router.patch("/{post_id}/patch")
 async def update_post(
+    request: Request,
     post_id: int,
     title: str | None = Form(default=None),
     content: str | None = Form(default=None),
@@ -121,12 +122,15 @@ async def update_post(
     if post is None:
         raise HTTPException(status_code=404, detail="Post not found")
 
-    if title is not None and title.strip():
-        post.title = title.strip()
-    if content is not None and content.strip():
-        post.content = content.strip()
+    if title is not None :
+        post.title = title
+    if content is not None :
+        post.content = content
 
     db.commit()
     db.refresh(post)
 
-    return RedirectResponse(url="/posts", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse(
+        url= request.url_for('list_posts_page'),
+        status_code=status.HTTP_303_SEE_OTHER
+    )
