@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} PATCH {% endblock %}
+{% block links %} {% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', path='/posts/style_patch_post.css') }}">
+    <form action="/posts/{{post.id}}/patch" method="PATCH" class="patch_form">
+        <label class="lbl">Заголовок:
+            <input type="text", name="title", value="{{post.title}}">
+        </label>
+
+        <label class="lbl" > Содержание: 
+            <input type="text" name="content" value="{{post.content}}">
+        </label>
+
+        <button class="submit">Сохранить</button>
+
+    </form>
+
+{% endblock %}

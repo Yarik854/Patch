@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ post.title }} {% endblock %}
+{% block links %} {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', path='/posts/style_get_one.css') }}">
+<div class="post_detail_container">
+    <article class="post_card">
+
+        <div class="post_header">
+            <h1 class="post_title">{{ post.title }}</h1>
+        </div>
+        <div class="post_body">
+            <p class="post_content">{{ post.content }}</p>
+        </div>
+
+
+    </article>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} POSTS {% endblock %}
+{% block links %} {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', path='/posts/style_post.css') }}">
+<div class="posts">
+    <a href="/posts/create" class="back_link">Cоздать пост</a>
+
+    {% for post in posts %}
+        <article class="post">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+        </article>
+    {% else %}
+        <p class="empty-posts">постов нет</p>
+    {% endfor %}
+</div>
+{% endblock %}
